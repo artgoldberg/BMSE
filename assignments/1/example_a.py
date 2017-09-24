@@ -10,24 +10,37 @@
 # commutative: a op b  =  b op a
 # distributive: a op2 (b op1 c)  =  a op2 b  op1  a op2 c
 
-# + associative? we expect yes
-if 1 + (2 + 3) == 1 + (2 + 3):
+# is + associative? analytically, we find yes
+if 1 + (2 + 3) == (1 + 2) + 3:
     print('+ appears associative')
 else:
     print("+ isn't associative")
 
-# * commutative? we expect yes
-if 2 * 3 == 3 * 2:
+# is * associative? analytically, we find yes
+if 1 * (2 * 3) == (1 * 2) * 3:
     print('* appears associative')
 else:
     print("* isn't associative")
 
-# are + and * left distributive? we expect no
+# is + commutative? analytically, we find yes
+if 2 + 3 == 3 + 2:
+    print('+ appears commutative')
+else:
+    print("+ isn't commutative")
+
+# is * commutative? analytically, we find yes
+if 2 * 3 == 3 * 2:
+    print('* appears commutative')
+else:
+    print("* isn't commutative")
+
+# is * left distributive over +? analytically, we find yes
 if 2 * (3 + 4)  ==  (2 * 3)  +  (2 * 4):
     print('* appears left distributive over +')
 else:
     print("* isn't left distributive over +")
 
+# is + left distributive over *? analytically, we find NO
 if 2 + (3 * 4)  ==  (2 + 3)  *  (2 + 4):
     print('+ appears left distributive over *')
 else:

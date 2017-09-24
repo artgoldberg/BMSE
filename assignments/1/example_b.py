@@ -17,8 +17,9 @@ s = 'test'
 print("i: {}; s: '{}'".format(i, s))
 
 def single_operator_properties(operators):
-    # test associative and commutative for integers
+    # test associative and commutative properties for integers
     for operator in operators:
+
         # associative?
         left_hand_side = "2 {} (3 {} 4)".format(operator, operator)
         right_hand_side = "(2 {} 3) {} 4".format(operator, operator)
@@ -26,5 +27,11 @@ def single_operator_properties(operators):
             print("{} appears associative".format(operator))
         else:
             print("{} isn't associative".format(operator))
+
+        # commutative?
+        if eval("3 {} 4".format(operator, operator)) == eval("4 {} 3".format(operator, operator)):
+            print("{} appears commutative".format(operator))
+        else:
+            print("{} isn't commutative".format(operator))
 
 single_operator_properties(['+', '-', '*', '/'])
