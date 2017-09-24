@@ -4,7 +4,13 @@
 :Date: 2017-09-24
 :Copyright: 2017, Arthur Goldberg
 '''
-# For example, are + and * associative and commutative for Python integers, and is the pair of them distributive?
+# Problem 1: 
+# Write a program that evaluates whether some Python operators on some types satisfy
+# the associative, commutative, or distributive properties.
+# For example, are + and * associative and commutative for Python integers,
+# and are they distributive together?
+
+# Helpful examples:
 
 # associative: (a op b) op c  =  a op (b op c)
 # commutative: a op b  =  b op a

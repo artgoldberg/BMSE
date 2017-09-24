@@ -4,6 +4,13 @@
 :Date: 2017-09-24
 :Copyright: 2017, Arthur Goldberg
 '''
+# Problem 2:
+# Write a program that systematically evaluates the associative and commutative properties of
+# +, -, *, and / for integers, and the distributive for every pair of them.
+# Also evaluate the associative and commutative properties of or and and for Booleans. 
+
+# Helpful examples:
+
 # Demonstrate Python eval().
 print(eval("1+2"))
 print(eval("2*3+4/5"))
