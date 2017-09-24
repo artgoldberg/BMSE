@@ -1,3 +1,9 @@
+'''Biomedical Software Engineering: BMI2002: Assignment 1
+
+:Author: Arthur Goldberg, Arthur.Goldberg@mssm.edu
+:Date: 2017-09-24
+:Copyright: 2017, Arthur Goldberg
+'''
 # For example, are + and * associative and commutative for Python integers, and is the pair of them distributive?
 
 # associative: (a op b) op c  =  a op (b op c)
