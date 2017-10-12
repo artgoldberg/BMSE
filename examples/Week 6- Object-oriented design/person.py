@@ -25,13 +25,18 @@ class Person(object):
         self.DOB = None
         self.children = []
 
+    def get_persons_name(person):
+        if person is None:
+            return None
+        return person.name
+
     def __str__(self):
         return "{}: DOB {}; gender {}; mother {}; father {}".format(
             self.name,
             self.DOB,
             self.gender,
-            self.mother.name,
-            self.father.name)
+            Person.get_persons_name(self.mother),
+            Person.get_persons_name(self.father))
 
 joe = Person('Joe', 'male')
 joe.DOB = '2000-10-12'
