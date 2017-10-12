@@ -38,6 +38,15 @@ class Person(object):
             Person.get_persons_name(self.mother),
             Person.get_persons_name(self.father))
 
+    def grandparents(self):
+        ''' Provide grandparents
+
+        Return 4-tuple:
+            (maternal grandmother, maternal grandfather, paternal grandmother, paternal grandfather)
+        Missing individuals identified by `None`.
+        '''
+        return (self.mother.mother, self.mother.father, self.father.mother, self.father.father)
+
 joe = Person('Joe', 'male')
 joe.DOB = '2000-10-12'
 
@@ -48,3 +57,5 @@ joe.mother = Person('Mary', 'F')
 print(joe.mother)
 print(joe)
 
+joe.mother.mother = Person('Agnes', 'female')
+print(joe.grandparents())
