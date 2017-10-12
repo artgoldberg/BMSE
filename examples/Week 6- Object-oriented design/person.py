@@ -25,6 +25,21 @@ class Person(object):
         self.DOB = None
         self.children = []
 
+    def __str__(self):
+        return "{}: DOB {}; gender {}; mother {}; father {}".format(
+            self.name,
+            self.DOB,
+            self.gender,
+            self.mother,
+            self.father)
+
 joe = Person('Joe', 'male')
+joe.DOB = '2000-10-12'
+
 print(joe)
 assert joe.name == 'Joe'
+
+joe.mother = Person('Mary', 'F')
+print(joe.mother)
+print(joe)
+
