@@ -30,8 +30,8 @@ class Person(object):
             self.name,
             self.DOB,
             self.gender,
-            self.mother,
-            self.father)
+            self.mother.name,
+            self.father.name)
 
 joe = Person('Joe', 'male')
 joe.DOB = '2000-10-12'
