@@ -45,7 +45,16 @@ class Person(object):
             (maternal grandmother, maternal grandfather, paternal grandmother, paternal grandfather)
         Missing individuals identified by `None`.
         '''
-        return (self.mother.mother, self.mother.father, self.father.mother, self.father.father)
+        grandparents = []
+        if self.mother:
+            grandparents.extend([self.mother.mother, self.mother.father])
+        else:
+            grandparents.extend([None, None])
+        if self.father:
+            grandparents.extend([self.father.mother, self.father.father])
+        else:
+            grandparents.extend([None, None])
+        return tuple(grandparents)
 
 joe = Person('Joe', 'male')
 joe.DOB = '2000-10-12'
@@ -59,3 +68,9 @@ print(joe)
 
 joe.mother.mother = Person('Agnes', 'female')
 print(joe.grandparents())
+joe.father = Person('Joe Sr.', 'male')
+joe.father.father = Person('Old Joe', 'male')
+print(joe.grandparents())
+print('joe.grandparents():')
+for gp in joe.grandparents():
+    print('\t', gp)
