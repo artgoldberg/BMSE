@@ -56,6 +56,17 @@ class Person(object):
             grandparents.extend([None, None])
         return tuple(grandparents)
 
+    def sons(self):
+        sons = []
+        for child in self.children:
+            # TODO: standardize genders
+            if child.gender == 'male':
+                sons.append(child)
+        return sons
+
+    def add_child(self, person):
+        self.children.append(person)
+
 joe = Person('Joe', 'male')
 joe.DOB = '2000-10-12'
 
@@ -74,3 +85,7 @@ print(joe.grandparents())
 print('joe.grandparents():')
 for gp in joe.grandparents():
     print('\t', gp)
+
+joe.mother.add_child(joe)
+print('joe.mother.sons():', joe.mother.sons())
+print('joe.sons():', joe.sons())
