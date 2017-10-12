@@ -14,7 +14,7 @@
 
 # associative: (a op b) op c  =  a op (b op c)
 # commutative: a op b  =  b op a
-# distributive: a op2 (b op1 c)  =  a op2 b  op1  a op2 c
+# distributive: a op2 (b op1 c)  =  (a op2 b) op1 (a op2 c)
 
 # is + associative? analytically, we find yes
 if 1 + (2 + 3) == (1 + 2) + 3:
