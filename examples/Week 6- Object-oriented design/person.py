@@ -97,6 +97,15 @@ class Person(object):
     def parents_simple(self):
         return self.ancestors(1)
 
+    def great_grandparents(self):
+        return self.ancestors(3)
+
+    def all_grandparents(self):
+        return self.ancestors(2, max_depth=float('inf'))
+
+    def all_ancestors(self):
+        return self.ancestors(1, max_depth=float('inf'))
+
 def print_people(people):
     for p in people:
         print('\t', p)
@@ -117,11 +126,11 @@ joe.father.father = Person('Old Joe', 'male')
 maternal_gm.mother = Person('Maternal ggm', 'female')
 print('joe.grandparents(), Agnes, Old Joe'); print_people(joe.grandparents())
 print('joe.grandparents_simple(), Agnes, Old Joe'); print_people(joe.grandparents_simple())
-print('joe great-grandparents: Maternal ggm'); print_people(joe.ancestors(3))
+print('joe great-grandparents: Maternal ggm'); print_people(joe.great_grandparents())
 
 # play with infinite limits
 inf = float('inf')
-print('joes ancestors: Mary, Joe Sr., Agnes, Old Joe, Maternal ggm'); print_people(joe.ancestors(1, inf))
+print('joes ancestors: Mary, Joe Sr., Agnes, Old Joe, Maternal ggm'); print_people(joe.all_ancestors())
 print('joe and his ancestors'); print_people(joe.ancestors(0, inf))
 
 joe.mother.add_child(joe)
