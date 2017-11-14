@@ -116,7 +116,8 @@ class Person(object):
         return tuple(grandparents)
 
     # TODO: EXTRA CREDIT: implement this descendants method, which has analogous semantics to the
-    # ancestors method below. The implementation may use a while loop or be recursive.
+    # ancestors method below. The implementation may use a while loop or be recursive. Use
+    # your 'descendants' method to implement 'children', 'grand_children', and 'all_descendants'.
     def descendants(self, min_depth, max_depth=None):
         """ Return this person's descendants within a generational depth range
 
@@ -188,8 +189,8 @@ class Person(object):
         Raises:
             :obj:`ValueError`: if `max_depth` < `min_depth`
         """
-        # TODO: EXTRA CREDIT: a cycle in the ancestry graph will create an infinite loop;
-        # avoid this problem
+        # TODO: EXTRA CREDIT: can a cycle in the ancestry graph will create an infinite loop?
+        # if so, avoid this problem.
         if min_depth <= 0:
             collected_ancestors.add(self)
         if 0 < max_depth:
