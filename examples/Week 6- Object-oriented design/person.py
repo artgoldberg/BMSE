@@ -115,8 +115,8 @@ class Person(object):
             grandparents.extend([None, None])
         return tuple(grandparents)
 
-    # TODO: EXTRA CREDIT: implement this descendants method. The implementation may use a while
-    # loop or be recursive.
+    # TODO: EXTRA CREDIT: implement this descendants method, which has analogous semantics to the
+    # ancestors method below. The implementation may use a while loop or be recursive.
     def descendants(self, min_depth, max_depth=None):
         """ Return this person's descendants within a generational depth range
 
@@ -140,26 +140,6 @@ class Person(object):
             :obj:`ValueError`: if `max_depth` < `min_depth`
         """
         pass
-        
-        if max_depth is not None:
-            if max_depth < min_depth:
-                    raise ValueError("max_depth ({}) cannot be less than min_depth ({})".format(
-                        max_depth, min_depth))
-        else:
-            # collect just one depth
-            max_depth = min_depth
-        depth = 0
-        found = set()
-        # remaining contains pairs (person, depth) of descendants that may satisfy the depth criteria
-        remaining = [(self, 0),]
-        while remaining:
-            (person, depth) = remaining.pop()
-            if min_depth <= depth <= max_depth:
-                found.add(person)
-            if depth < max_depth:
-                for child in person.children:
-                    remaining.append((child, depth+1),)
-        return found
 
     def ancestors(self, min_depth, max_depth=None):
         """ Return this person's ancestors within a generational depth range
@@ -293,6 +273,3 @@ print('joe.sons():', joe.sons())
 
 kid = Person('kid', 'male', father=joe)
 joe.add_child(kid)
-
-print('joe.mother.descendants(2):'); print_people(joe.mother.descendants(2))
-print('joe.mother.descendants(1, max_depth=2):'); print_people(joe.mother.descendants(1, max_depth=2))
