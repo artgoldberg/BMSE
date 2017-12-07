@@ -189,7 +189,7 @@ class Person(object):
         Raises:
             :obj:`ValueError`: if `max_depth` < `min_depth`
         """
-        # TODO: EXTRA CREDIT: can a cycle in the ancestry graph will create an infinite loop?
+        # TODO: EXTRA CREDIT: can a cycle in the ancestry graph create an infinite loop?
         # if so, avoid this problem.
         if min_depth <= 0:
             collected_ancestors.add(self)
