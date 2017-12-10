@@ -101,9 +101,6 @@ class Person(object):
         self.father = father
         self.children = set()
 
-    # a method annotated with '@staticmethod' is a 'static method' that does not receive an
-    # implicit first argument. Rather, it is called C.m(), where the class C identifies the
-    # class in which the method is defined.
     @staticmethod
     def get_persons_name(person):
         """ Get a person's name; if the person is not known, return 'NA'
