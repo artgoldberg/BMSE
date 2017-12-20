@@ -61,6 +61,11 @@ class TestPerson(unittest.TestCase):
             self.child.set_mother(self.mom)
         self.assertIn('is not female', str(context.exception))
 
+    def test_get_persons_name(self):
+        self.assertEqual(Person.get_persons_name(self.child),
+            self.child.name)
+        self.assertEqual(Person.get_persons_name(None), 'NA')
+
     '''
     def test_add_child(self):
         self.assertNotIn(self.child, self.mom.children)

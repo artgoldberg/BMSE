@@ -105,6 +105,9 @@ class Person(object):
     def get_persons_name(person):
         """ Get a person's name; if the person is not known, return 'NA'
 
+        Args:
+             person (:obj:`Person`): a person
+
         Returns:
             :obj:`str`: the person's name, or 'NA' if they're not known
         """
@@ -196,6 +199,7 @@ class Person(object):
         Returns:
             :obj:`set`: this person's known parents
         '''
+        # deliberate bug: constant should be 1; but forgot to say this method should be tested!
         return self.ancestors(0)
 
     def grandparents(self):
@@ -207,11 +211,14 @@ class Person(object):
         return self.ancestors(2)
 
     def all_grandparents(self):
-        ''' Provide all of this person's known grandparents, from their parents' parents on back 
+        ''' Provide all of this person's known grandparents, from their parents' parents on back
+
+        Grandparents include grandparents, great-grandparents, great-great-grandparents, etc.
 
         Returns:
             :obj:`set`: all of this person's known grandparents
         '''
+        # deliberate bug: constant should be 2
         return self.ancestors(3, max_depth=float('inf'))
 
     def all_ancestors(self):
