@@ -74,6 +74,42 @@ class Person(object):
 
     # TODO: create a 'siblings' method that returns a person's siblings, and write a 'half_siblings'
     # method that returns a person's half-siblings.
+    def siblings(self):
+        """ Get this person's siblings, i.e., people with the same parents
+
+        Returns:
+            :obj:`list` of `Person`: the person's siblings
+        """
+        # cannot be done if a parent is not known
+        if self.father is None or self.mother is None:
+            # exceptions not being used yet
+            print("cannot get siblings for '{}'".format(self.name))
+            return
+        # siblings are other people with same parents
+        all_joint_offspring = self.father.children.intersection(self.mother.children)
+        return all_joint_offspring - self
+
+    def half_siblings(self):
+        """ Get this person's half-siblings, i.e., people with exactly one parent in common
+
+        Both of a `Person`'s parents must be known for them to be evaluated as a possible half-sibling
+
+        Returns:
+            :obj:`list` of `Person`: the person's siblings
+        """
+        # cannot be done if a parent is not known
+        if self.father is None or self.mother is None:
+            # exceptions not being used yet
+            print("cannot get half-siblings for '{}', as one or more parents unknown".format(self.name))
+            return
+
+        # half-siblings have exactly one parent in common with self
+        offspring_of_one_parent = set()
+        for offspring in self.father.children.symmetric_difference(self.mother.children):
+            # both of a half-sib's parents must be known
+            if not (offspring.father is None or offspring.mother is None):
+                offspring_of_one_parent.add(offspring)
+        return offspring_of_one_parent
 
     def sons(self):
         """ Get this person's sons
@@ -165,8 +201,8 @@ class Person(object):
         """
         if max_depth is not None:
             if max_depth < min_depth:
-                    raise ValueError("max_depth ({}) cannot be less than min_depth ({})".format(
-                        max_depth, min_depth))
+                raise ValueError("max_depth ({}) cannot be less than min_depth ({})".format(
+                    max_depth, min_depth))
         else:
             # collect just one depth
             max_depth = min_depth
@@ -219,7 +255,7 @@ class Person(object):
         return self.ancestors(3)
 
     def all_grandparents(self):
-        ''' Provide all of this person's known grandparents, from their parents' parents on back 
+        ''' Provide all of this person's known grandparents, from their parents' parents on back
 
         Returns:
             :obj:`set`: all of this person's known grandparents
