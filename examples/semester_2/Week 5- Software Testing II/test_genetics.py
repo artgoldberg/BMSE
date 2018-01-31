@@ -22,7 +22,7 @@ class TestGenetics(unittest.TestCase):
             self.assertEqual(counts[ntide], 0)
 
     def test_check_genome(self):
-        good_genome = 'AAACTGGGG--NN'
+        good_genome = 'AAACTGGGGNN'
         try:
             Genetics.check_genome(good_genome)
         except ValueError:
