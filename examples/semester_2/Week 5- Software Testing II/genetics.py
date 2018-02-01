@@ -24,7 +24,7 @@ class Genetics(object):
         """ Count the DNA nucleotides
 
         Returns:
-            :obj:`dict`: map from DNA nucleotide to its count in the genome
+            :obj:`dict`: map from each DNA nucleotide to its count in the genome
         """
         counts = {}
         for ntide in Genetics.DNA_NUCLEOTIDES:

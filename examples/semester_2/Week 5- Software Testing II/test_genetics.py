@@ -25,7 +25,7 @@ class TestGenetics(unittest.TestCase):
         good_genome = 'AAACTGGGGNN'
         try:
             Genetics.check_genome(good_genome)
-        except ValueError:
+        except ValueError:  # pragma: no cover
             self.fail("check_genome should not raise an exception")
 
         bad_genome = "ARTHURS NECK"

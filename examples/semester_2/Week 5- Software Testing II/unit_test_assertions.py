@@ -47,6 +47,11 @@ class TestStringMethods(unittest.TestCase):
         # re.search(s)
         data_dependent_string = "Today {} is greater than {}".format(a, b)
         self.assertRegex(data_dependent_string, "Today .* is greater than")
-        
+
+        # coverage pragma to exclude lines and code blocs from coverage analysis
+        if False:   # pragma: no cover
+            # unittest method that always fails
+            self.fail("fail example")
+
 if __name__ == '__main__':
     unittest.main()
