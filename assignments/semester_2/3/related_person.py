@@ -40,6 +40,17 @@ class Gender( object ):
         UNKNOWN:set( ['unknown', 'na', 'not specified', '-9', '0'] )
     }
 
+    def genders_string_mappings( self ):
+        """ Report the mappings from strings to gender constants
+
+        Returns:
+            :obj:`str`: a description of the mappings from strings to gender constants
+        """
+        rv = "Legal genders, which are case insensitive, map to gender constants:\n"
+        for gender_constant,synonyms in self.GENDER_MAP.items(  ):
+            rv += "{} -> '{}'\n".format( synonyms, gender_constant )
+        return rv
+
     def get_gender( self, gender ):
         """ Obtain a gender constant
 
@@ -58,17 +69,6 @@ class Gender( object ):
             if gender.lower(  ) in synonyms:
                 return gender_constant
         raise RelatedPersonError( "Illegal gender '{}'".format( gender ) )
-
-    def genders_string_mappings( self ):
-        """ Report the mappings from strings to gender constants
-
-        Returns:
-            :obj:`str`: a description of the mappings from strings to gender constants
-        """
-        rv = "Legal genders, which are case insensitive, map to gender constants:\n"
-        for gender_constant,synonyms in self.GENDER_MAP.items(  ):
-            rv += "{} -> '{}'\n".format( synonyms, gender_constant )
-        return rv
 
 
 class RelatedPerson( object ):
@@ -129,6 +129,21 @@ class RelatedPerson( object ):
             return 'NA'
         return related_person.name
 
+    def set_father( self, father ):
+        """ Set the father of this related person
+
+        Args:
+             father ( :obj:`RelatedPerson` ): this related person's father
+
+        Raises:
+            :obj:`RelatedPersonError`: if `father` is not male, or if a cycle in the ancestors
+            graph would be created
+        """
+        if father.gender != Gender.MALE:
+            raise RelatedPersonError( "father named '{}' is not male".format( father.name ) )
+        father.children.add( self )
+        self.father = father
+
     def set_mother( self, mother ):
         """ Set the mother of this related person
 
@@ -144,20 +159,32 @@ class RelatedPerson( object ):
         mother.children.add( self )
         self.mother = mother
 
-    def set_father( self, father ):
-        """ Set the father of this related person
-
-        Args:
-             father ( :obj:`RelatedPerson` ): this related person's father
+    def remove_mother( self ):
+        """ Remove this related person's mother
 
         Raises:
-            :obj:`RelatedPersonError`: if `father` is not male, or if a cycle in the ancestors
-            graph would be created
+            :obj:`RelatedPersonError`: if this related person does not have a mother or this related person is not one
+            of their mother's children
         """
-        if father.gender != Gender.MALE:
-            raise RelatedPersonError( "father named '{}' is not male".format( father.name ) )
-        father.children.add( self )
-        self.father = father
+        if not isinstance( self.mother, RelatedPerson ):
+            raise RelatedPersonError( "mother of '{}' is not set and cannot be removed".format( self.name ) )
+        if not self in self.mother.children:
+            raise RelatedPersonError( "cannot remove mother of '{}', not one of her children".format( self.name ) )
+        self.mother.children.remove( self )
+        self.mother = None
+
+    def remove_father( self ):
+        """ Remove this related person's father
+
+        Raises:
+            :obj:`RelatedPersonError`: if this related person does not have a father or this related person is not one
+            of their father's children
+        """
+        if not isinstance( self.father, RelatedPerson ):
+            raise RelatedPersonError( "cannot remove father of '{}', as it is not set".format( self.name ) )
+        if not self in self.father.children:
+            raise RelatedPersonError( "cannot remove father of '{}', not one of his children".format( self.name ) )
+        self.father.children.remove( self )
 
     def add_child( self, child ):
         """ Add a child to this related person's children, and set this related person as the child's father or mother
@@ -179,33 +206,6 @@ class RelatedPerson( object ):
             child.set_father( self )
         if self.gender == Gender.MALE:
             child.set_father( self )
-
-    def remove_father( self ):
-        """ Remove this related person's father
-
-        Raises:
-            :obj:`RelatedPersonError`: if this related person does not have a father or this related person is not one
-            of their father's children
-        """
-        if not isinstance( self.father, RelatedPerson ):
-            raise RelatedPersonError( "cannot remove father of '{}', as it is not set".format( self.name ) )
-        if not self in self.father.children:
-            raise RelatedPersonError( "cannot remove father of '{}', not one of his children".format( self.name ) )
-        self.father.children.remove( self )
-
-    def remove_mother( self ):
-        """ Remove this related person's mother
-
-        Raises:
-            :obj:`RelatedPersonError`: if this related person does not have a mother or this related person is not one
-            of their mother's children
-        """
-        if not isinstance( self.mother, RelatedPerson ):
-            raise RelatedPersonError( "mother of '{}' is not set and cannot be removed".format( self.name ) )
-        if not self in self.mother.children:
-            raise RelatedPersonError( "cannot remove mother of '{}', not one of her children".format( self.name ) )
-        self.mother.children.remove( self )
-        self.mother = None
 
     def ancestors( self, min_depth, max_depth=None ):
         """ Return this related person's ancestors within a generational depth range
@@ -279,18 +279,18 @@ class RelatedPerson( object ):
         '''
         return self.ancestors( 3 )
 
-    def grandparents_and_earlier( self ):
-        ''' Provide this related person's known grandparents, and all of their ancestors
-
-        Returns:
-            :obj:`set`: all of this related person's known grandparents
-        '''
-        return self.ancestors( 2, max_depth=float( 'inf' ) )
-
     def all_ancestors( self ):
         ''' Provide all of this related person's known ancestors
 
         Returns:
             :obj:`set`: all of this related person's known ancestors
+        '''
+        return self.ancestors( 2, max_depth=float( 'inf' ) )
+
+    def grandparents_and_earlier( self ):
+        ''' Provide this related person's known grandparents, and all of their ancestors
+
+        Returns:
+            :obj:`set`: all of this related person's known grandparents
         '''
         return self.ancestors( 2, max_depth=float( 'inf' ) )
