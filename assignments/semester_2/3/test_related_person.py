@@ -52,8 +52,6 @@ class TestRelatedPerson(unittest.TestCase):
             self.dad.add_child(self.child)
         self.assertRegex(str(context.exception), "cannot add child.*with unknown gender")
 
-        # attempt to make an ancestor cycle
-
     def test_remove_father(self):
         self.child.set_father(self.dad)
         self.child.remove_father()

@@ -49,7 +49,10 @@ import random
 #
 ######################################
 
+input_file = "ConfTest.vals"
+input_file = "stateasyExerciseData/Diff2MeanCh1Ex2.vals"
 input_file = "Diff2Mean.vals"
+print('input', input_file)
 
 ######################################
 #
@@ -115,8 +118,8 @@ num_shuffles = 10000
 for i in range(num_shuffles):
 	new_samples = shuffle(samples)
 	mean_diff = meandiff(new_samples[a], new_samples[b])
-	# if the observed difference is negative, look for differences that are smaller
-	# if the observed difference is positive, look for differences that are greater
+	# if the observed difference is negative, look for differences that are the same or smaller
+	# if the observed difference is positive, look for differences that are the same or larger
 	if observed_mean_diff < 0 and mean_diff <= observed_mean_diff:
 		count = count + 1
 	elif observed_mean_diff >= 0 and mean_diff >= observed_mean_diff:

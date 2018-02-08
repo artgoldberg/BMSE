@@ -55,7 +55,11 @@ import sys
 #
 ######################################
 
+input_file = "stateasyExerciseData/Diff2MeanCh1Ex2.vals"
 input_file = "Diff2Mean.vals"
+input_file = "ConfTest.vals"
+print('input', input_file)
+
 conf_interval = 0.9
 
 ######################################
