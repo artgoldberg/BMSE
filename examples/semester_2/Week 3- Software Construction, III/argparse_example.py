@@ -8,7 +8,7 @@
 """
 
 import argparse # see https://docs.python.org/3/library/argparse.html
-import re
+import re, sys
 
 class ArgparseDemo(object):
     """
@@ -49,8 +49,10 @@ class ArgparseDemo(object):
         parser.add_argument('--float', '-f', type=float, help='a float')
         parser.add_argument('--outfile', type=argparse.FileType('w'))
         parser.add_argument('--infile', type=argparse.FileType('r'))
+        parser.add_argument('--infile2', type=argparse.FileType('r'), default=sys.stdin, nargs='?')
         parser.add_argument('--identifier', type=ArgparseDemo.identifier, help='a Python identifier')
         parser.add_argument('--flag', action='store_true', help='a flag')
+        parser.add_argument('--flag_false', action='store_false', help='a flag')
         print(parser.parse_args())
 
     @staticmethod
@@ -60,10 +62,9 @@ class ArgparseDemo(object):
         parser.add_argument('door', type=int, choices=range(1, 4), help="Let's make a deal choices")
         print(parser.parse_args())
 
-
 if __name__ == '__main__':
 
-    ArgparseDemo.req_vs_opt_args()
+    # ArgparseDemo.req_vs_opt_args()
     # ArgparseDemo.arg_types()
-    # ArgparseDemo.arg_choices()
+    ArgparseDemo.arg_choices()
     # argparse_demo = ArgparseDemo()
