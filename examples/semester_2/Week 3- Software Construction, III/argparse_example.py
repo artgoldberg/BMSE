@@ -1,3 +1,4 @@
+#!/usr/bin/python
 """ Demonstrate argparse error checking
 
 :Author: Arthur Goldberg <Arthur.Goldberg@mssm.edu>
@@ -10,8 +11,11 @@ import argparse # see https://docs.python.org/3/library/argparse.html
 import re
 
 class ArgparseDemo(object):
-
     """
+        Kinds of arguments to parse:
+            Required vs. optional arguments
+            Argument type
+            Documentation phrase for each argument
         Kinds of errors to check:
             Required vs. optional arguments
             Type
@@ -46,6 +50,7 @@ class ArgparseDemo(object):
         parser.add_argument('--outfile', type=argparse.FileType('w'))
         parser.add_argument('--infile', type=argparse.FileType('r'))
         parser.add_argument('--identifier', type=ArgparseDemo.identifier, help='a Python identifier')
+        parser.add_argument('--flag', action='store_true', help='a flag')
         print(parser.parse_args())
 
     @staticmethod
@@ -56,7 +61,9 @@ class ArgparseDemo(object):
         print(parser.parse_args())
 
 
-# ArgparseDemo.req_vs_opt_args()
-# ArgparseDemo.arg_types()
-ArgparseDemo.arg_choices()
-# argparse_demo = ArgparseDemo()
+if __name__ == '__main__':
+
+    ArgparseDemo.req_vs_opt_args()
+    # ArgparseDemo.arg_types()
+    # ArgparseDemo.arg_choices()
+    # argparse_demo = ArgparseDemo()
