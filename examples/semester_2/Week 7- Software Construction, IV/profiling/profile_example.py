@@ -35,7 +35,7 @@ class Example(object):
         print("{} node path".format(len(p)))
 
     def subgraph_match(self):
-        complete_subgraph = nx.complete_graph(self.args.graph_size)
+        complete_subgraph = nx.complete_graph(self.args.sub_graph_size)
         gm = GraphMatcher(self.complete_graph, complete_subgraph)
         is_isomorphic = gm.subgraph_is_isomorphic()
         print("Is isomorphic?: {}".format(is_isomorphic))
@@ -58,6 +58,6 @@ if __name__ == '__main__':
         OUT_FILE = 'stats.out'
         cProfile.run('Example(args).run()', OUT_FILE)
         profile = pstats.Stats(OUT_FILE)
-        profile.strip_dirs().sort_stats('cumulative').print_stats(10)
+        profile.strip_dirs().sort_stats('cumulative').print_stats(3)
     else:
         Example(args).run()
