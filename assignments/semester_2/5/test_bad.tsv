@@ -1,0 +1,23 @@
+ID	Name	Father_ID	Mother_ID	Gender
+M1	Joe	0	0	M
+M2	Joseph	0	0	M
+F1	Mary	0	0	F
+F2	Sally	0	0	fmale
+F3	Sallydup	0	0	F
+F3	Sallydup	0	0	F
+shortline	Sally	0	0
+longline	Sally	0	0	F	x
+F3	Sallydup	0	0	F
+son	Son	dad	mom	male
+daughter	Daughter	dad	mom	F
+dad	Dad	grandpa	0	male
+mom	Mom	0	grandma	female
+grandpa	Grandpa	0	0	male
+grandma	Grandma	0	0	female
+kid1	Kid1	no_dad	0	male
+kid2	Kid2	0	no_mom	male
+kid3	Kid3	female_pa	male_ma	male
+kid4	Kid4	0	genderless_ma	male
+female_pa	Female_pa	0	0	F
+male_ma	Male_ma	0	0	M
+genderless_ma	Gender_Q	0	0	na
