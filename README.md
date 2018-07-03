@@ -1,5 +1,5 @@
 # Biomedical Software Engineering course
-Assignments and examples for the Biomedical Software Engineering course at the Mount Sinai School of Medicine
+Assignments and examples for the Biomedical Software Engineering course taught at the Mount Sinai School of Medicine
 
 ## Contents
 * [Overview](#overview)
@@ -14,4 +14,4 @@ The course teaches software engineering skills that enable efficient creation an
 We cover skills that students apply to a current biomedical informatics project, and expose students to advanced software engineering methods and skills that they can apply and develop over their professional lives.
 
 ## Questions and comments
-Please contact [Prof. Arthur Goldberg](Arthur_dot_goldberg@mssm.edu) with any questions or comments.
+Please contact [Prof. Arthur Goldberg](mailto:Arthur-dot-Goldberg@mssm.edu) with any questions or comments.
