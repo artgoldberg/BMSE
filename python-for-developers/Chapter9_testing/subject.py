@@ -141,6 +141,7 @@ class Subject:
         # TODO(BMSE student) check that all subjects all have unique ids
         return subjects
 
+'''
 # TODO(BMSE student) move this code to a separate test_subjects.py module
 good_data = ['18795', 'female', '2005-01-07', 'affected']
 assert not Subject.verify(*good_data)
@@ -151,3 +152,4 @@ for bad_vals in bad_val_lists:
             args = good_data.copy()
             args[idx] = val
             assert Subject.verify(*args), 'error not found'
+'''

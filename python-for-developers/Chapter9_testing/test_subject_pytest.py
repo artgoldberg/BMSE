@@ -11,11 +11,8 @@ class TestSubject(unittest.TestCase):
     def tearDown(self):
         print('tearDown')
 
-    def x(self):
+    def test_f(self):
         self.assertFalse(True)
 
     def test_verify(self):
         self.assertFalse(Subject.verify(*self.good_data))
-
-if __name__ == '__main__':
-    unittest.main()
