@@ -71,7 +71,6 @@ class TransTranslator(object):
             :obj:`ValueError`: if `chromosome` contains bad bases or unknown codons
         """
 
-        print("chromosome: '{}'".format(chromosome))
         # validate chromosome
         bad_base_positions = []
         good_bases = set(self.dna_rna)
@@ -110,14 +109,12 @@ class TransTranslator(object):
             else:
                 # raise exception if the codon can't be translated
                 if codon not in self.rna_protein:
-                    raise ValueError("unknown codon '{}' at {} in {}".format(codon, codon_start_pos,
+                    raise ValueError("unknown codon '{}' at pos {} in {}".format(codon, codon_start_pos,
                         rna_chromosome))
                 translated_codon = self.rna_protein[codon]
                 if translated_codon == "STOP":
                     translating = False
-                    print("protein: '{}'".format(protein))
                     if protein:
-                        print("proteins.append")
                         proteins.append(''.join(protein))
                     continue
                 amino_acid = translated_codon
