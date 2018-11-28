@@ -71,6 +71,7 @@ class TransTranslator(object):
             :obj:`ValueError`: if `chromosome` contains bad bases or unknown codons
         """
 
+        print("chromosome: '{}'".format(chromosome))
         # validate chromosome
         bad_base_positions = []
         good_bases = set(self.dna_rna)
@@ -101,7 +102,8 @@ class TransTranslator(object):
                 if codon in self.start_codons:
                     # the codon is AUG
                     translating = True
-                    proteins.append([])
+                    # record a protein as a list of AAs
+                    protein = []
                     continue
                 else:
                     num_noncoding_bases += self.CODON_LEN
@@ -110,17 +112,22 @@ class TransTranslator(object):
                 if codon not in self.rna_protein:
                     raise ValueError("unknown codon '{}' at {} in {}".format(codon, codon_start_pos,
                         rna_chromosome))
-                amino_acid = self.rna_protein[codon]
-                if amino_acid == "STOP":
+                translated_codon = self.rna_protein[codon]
+                if translated_codon == "STOP":
                     translating = False
+                    print("protein: '{}'".format(protein))
+                    if protein:
+                        print("proteins.append")
+                        proteins.append(''.join(protein))
                     continue
-                proteins[-1].append(amino_acid)
-        
+                amino_acid = translated_codon
+                protein.append(amino_acid)
+
         # DNA failure if still translating at end of chromosome or no proteins found
         if translating or not proteins:
             DNA_failure = True
 
-        return ([''.join(p) for p in proteins], num_noncoding_bases, DNA_failure)
+        return (proteins, num_noncoding_bases, DNA_failure)
 
     def trans_trans_genome(self, genome):
         """ Transcribe and translate a genome
