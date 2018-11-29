@@ -58,6 +58,6 @@ if __name__ == '__main__':
         OUT_FILE = 'stats.out'
         cProfile.run('Example(args).run()', OUT_FILE)
         profile = pstats.Stats(OUT_FILE)
-        profile.strip_dirs().sort_stats('cumulative').print_stats(3)
+        profile.strip_dirs().sort_stats('cumulative').print_stats(10)
     else:
         Example(args).run()
