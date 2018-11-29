@@ -7,6 +7,7 @@
 """
 
 import sys
+import copy
 from numpy import mean
 
 
@@ -48,9 +49,10 @@ class TransTranslator(object):
             start_codons (:obj:`set`, optional): start codon strings that initiate translation
         """
 
-        self.dna_rna = self.DNA_RNA if dna_rna is None else dna_rna
-        self.rna_protein = self.RNA_PROTEIN if rna_protein is None else rna_protein
-        self.start_codons = self.START_CODONS if start_codons is None else start_codons
+        # copy genetic maps so that one TransTranslator instance cannot alter the maps of another
+        self.dna_rna = copy.deepcopy(self.DNA_RNA) if dna_rna is None else dna_rna
+        self.rna_protein = copy.deepcopy(self.RNA_PROTEIN) if rna_protein is None else rna_protein
+        self.start_codons = copy.deepcopy(self.START_CODONS) if start_codons is None else start_codons
         self.chromosomes = []
         self.proteins = []
         self.num_noncoding_bases = 0

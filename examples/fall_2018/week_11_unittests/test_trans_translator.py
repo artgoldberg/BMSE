@@ -35,7 +35,7 @@ class TestTransTranslator(unittest.TestCase):
 
     def test_trans_trans(self):
 
-        # DNA with 1 protein that's 3 AA long; no non-coding DNA
+        # DNA with 1 protein that's 1 AA long; no non-coding DNA
         chr = 'ATGGAATGA'
         self.assertEqual(self.trans_translator.trans_trans(chr), (['E'], 0, False))
 
@@ -61,8 +61,10 @@ class TestTransTranslator(unittest.TestCase):
             self.trans_translator.trans_trans(chr)
 
         # RNA_PROTEIN covers all possible codons, so must delete one to generate the unknown codon error
+        # copy TransTranslator.RNA_PROTEIN so that the one in TransTranslator does not get changed
         rna_protein_copy = copy.deepcopy(TransTranslator.RNA_PROTEIN)
         del rna_protein_copy['UCU']
+        # use the rna_protein keyword argument to use the changed RNA_PROTEIN dict
         trans_translator = TransTranslator(rna_protein=rna_protein_copy)
         chr = 'ATGTCTTGA'
         with self.assertRaisesRegex(ValueError, "unknown codon 'UCU' at pos 3 in AUGUCUUGA"):
