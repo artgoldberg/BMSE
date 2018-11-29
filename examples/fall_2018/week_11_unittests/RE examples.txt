@@ -1,0 +1,17 @@
+pattern:	text
+[abx]:		abc...xyz
+[0-9]:		sdfkn37ytas45
+[^0-9]:		sdfkn37ytas45
+\d:			born on july 4, 2001
+\D:			born on july 4, 2001
+\w:			born on july 4, 2001
+\n:
+\t:
+\s:
+.
+a*:			aaron arthur
+ab+:		acababbbax
+(\w+):		hello mom, july 4
+(.*\n):
+
+
