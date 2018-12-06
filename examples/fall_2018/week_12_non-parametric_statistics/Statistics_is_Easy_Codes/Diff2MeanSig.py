@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-######################################
 # Difference between Two Means Significance Test
 # From: Statistics is Easy! By Dennis Shasha and Manda Wilson
 # 
@@ -39,30 +38,19 @@
 # 4. counter / 10,000 equals the probability of getting our observed difference of two means greater than
 #    or equal to 12.97, if there is in fact no significant difference.
 #
-######################################
 
 import random
 
-######################################
-#
 # Adjustable variables
-#
-######################################
-
 input_file = "ConfTest.vals"
 input_file = "stateasyExerciseData/Diff2MeanCh1Ex2.vals"
 input_file = "Diff2Mean.vals"
 print('input', input_file)
 
-######################################
-#
 # Subroutines
-#
-######################################
 
 # takes a list of groups (two or more)
-# pools all values, shuffles them, and makes new groups 
-# of same size as original groups
+# pools all values, shuffles them, and makes new groups of same size as original groups
 # returns these new groups
 # example of shuffle with more than two groups: OneWayAnovaSig.py
 def shuffle(grps):
@@ -88,12 +76,7 @@ def shuffle(grps):
 def meandiff(grpA, grpB):
 	return sum(grpB) / float(len(grpB)) - sum(grpA) / float(len(grpA))
 
-######################################
-#
 # Computations
-#
-######################################
-
 # list of lists
 samples = [] 
 a = 0
@@ -125,12 +108,7 @@ for i in range(num_shuffles):
 	elif observed_mean_diff >= 0 and mean_diff >= observed_mean_diff:
 		count = count + 1
 
-######################################
-#
 # Output
-#
-######################################
-
 print("Observed difference of two means: %.2f" % observed_mean_diff) 
 print(count, "out of", num_shuffles, "experiments had a difference of two means", end=' ')
 if observed_mean_diff < 0:
