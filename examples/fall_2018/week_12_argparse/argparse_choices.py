@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/anaconda3/bin/python3
 """ Demonstrate argparse error checking
 
 :Author: Arthur Goldberg <Arthur.Goldberg@mssm.edu>

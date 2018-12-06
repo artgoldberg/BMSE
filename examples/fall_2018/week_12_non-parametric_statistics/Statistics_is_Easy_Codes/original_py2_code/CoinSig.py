@@ -1,4 +1,4 @@
-#!/anaconda3/bin/python3
+#!/usr/bin/python
 
 ######################################
 # Coin Toss Significance Test
@@ -62,7 +62,7 @@ def applyprob(p, n):
 	success = 0
 	for j in range(n):
 		outcome = random.uniform(0, drawspace)
-		if (p * drawspace) >= outcome:
+		if ( (p * drawspace) >= outcome):
 			success = success + 1
 	return success
 
@@ -77,10 +77,10 @@ number_of_bootstraps = 10000
 out=[]
 
 for i in range(number_of_bootstraps):
-	out.append(applyprob(probability_of_head, number_of_tosses))
+	out.append(applyprob(probability_of_head,number_of_tosses))
 	   
 # count the number of times we got greater than or equal to 15 heads out of 17 coin tosses
-countgood = len([x for x in out if x >= observed_number_of_heads])
+countgood = len(filter(lambda x: x >= observed_number_of_heads, out))
 
 ######################################
 #
@@ -88,7 +88,7 @@ countgood = len([x for x in out if x >= observed_number_of_heads])
 #
 ######################################
 
-print(countgood, "out of", number_of_bootstraps, "times we got at least", end=' ') 
-print(observed_number_of_heads, "heads in", number_of_tosses, "tosses.")
-print("Probability that chance alone gave us at least", observed_number_of_heads, end=' ') 
-print("heads in", number_of_tosses, "tosses is", countgood / float(number_of_bootstraps), ".")
+print countgood, "out of", number_of_bootstraps, "times we got at least", 
+print observed_number_of_heads, "heads in", number_of_tosses, "tosses."
+print "Probability that chance alone gave us at least", observed_number_of_heads, 
+print "heads in", number_of_tosses, "tosses is", countgood / float(number_of_bootstraps), "."
