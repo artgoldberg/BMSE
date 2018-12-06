@@ -44,8 +44,8 @@ class ArgparseDemo(object):
         # 'action' specifies how the command-line arguments should be handled
         # 'store_true' and 'store_false' store the values True and False respectively,
         # & create defaults of False and True respectively
-        parser.add_argument('--flag', action='store_true', help='a flag')
-        parser.add_argument('--flag_false', action='store_false', help='a flag')
+        parser.add_argument('--flag', action='store_true', help='a true flag')
+        parser.add_argument('--flag_false', action='store_false', help='a false flag')
 
         # argparse.FileType is a factory that opens files and takes open()'s arguments
         parser.add_argument('--outfile', type=argparse.FileType('w'))

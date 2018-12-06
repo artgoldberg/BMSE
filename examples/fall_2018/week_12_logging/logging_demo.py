@@ -30,5 +30,4 @@ a = auxiliary.Auxiliary()
 
 spam_app_logger.info('calling Auxiliary.do_something')
 a.do_something()
-
 print('logging_demo.py done')
