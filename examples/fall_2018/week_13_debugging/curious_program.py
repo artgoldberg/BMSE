@@ -9,6 +9,12 @@ for i in range(30):
         print(i)
 '''
 
+x = 0b10000
+print(bin(x))
+print(bin(x-1))
+y = 0b10001
+print(bin(y & x))
+
 count = 0
 while True:
     sleep(1)

@@ -10,15 +10,17 @@ president_elections = {
 }
 
 # sort by year
+'''
 by_year = []
 for pres, years in president_elections.items():
     for year in years:
         by_year.append((year, pres))
 
 print(by_year)
+'''
 
 # test module-level code
-def by_year_fn(election_results):
+def by_year_fn(years_data):
     results_by_year = []
     for pres, years in president_elections.items():
         for year in years:
