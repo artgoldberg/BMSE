@@ -87,8 +87,3 @@ eg = {x: x**2 for x in range(N_SQUARES)}
 print(eg)
 eg = dict(zip(range(N_SQUARES), [x**2 for x in range(N_SQUARES)]))
 print(eg)
-
-
-'''
-Object-oriented design, with class composition, single & multiple inheritance, & abstract base classes
-'''
