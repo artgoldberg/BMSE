@@ -13,6 +13,7 @@ import shutil
 import tempfile
 import unittest
 
+
 # layout note: two blank lines are recommended before a class definition
 class TestPandasIO(unittest.TestCase):
 
@@ -49,8 +50,9 @@ class TestPandasIO(unittest.TestCase):
         # make a new temp file in the temp directory
         _, path = tempfile.mkstemp(suffix='.csv', dir=self.tempdir)
         # write the df
-        test_df.to_csv(path, index=has_index)
-        df_read = pd.read_csv(path, index_col=index_col)
+        test_df.to_csv(path, index=has_index)   # to_csv writes csv file in path
+        df_read = pd.read_csv(path, index_col=index_col)    # read_csv reads csv file in path
+        # the initial data frame (test_df) should equal the one read from the file (df_read)
         self.assertTrue(pd.DataFrame.equals(df_read, test_df))
 
     def test_csv_write_read(self):
@@ -62,17 +64,24 @@ class TestPandasIO(unittest.TestCase):
     def test_json(self):
         # round-trip test: JSON write and read
         for test_df in [self.df_no_index, self.df_index]:
+            # convert df to a string
             json_string = test_df.to_json()
+            # read the string into a df
             df_read = pd.read_json(json_string)
             self.assertTrue(pd.DataFrame.equals(df_read, test_df))
             try:
                 pd.testing.assert_frame_equal(df_read, test_df)
             except AssertionError as e:
-                raise self.failureException(msg) from e
+                self.fail(str(e))
+                # an alternative: raise self.failureException(msg) from e
 
             # test round-trip read and write of JSON files
             for json_path in self.json_fixtures:
+                # read the existing file
                 df_read = pd.read_json(json_path)
                 _, path = tempfile.mkstemp(suffix='.json', dir=self.tempdir)
+                # write the file that was just read into another file
                 df_read.to_json(path)
+                # compare them
+                # shallow=False means compare the file contents
                 self.assertTrue(filecmp.cmp(json_path, path, shallow=False))

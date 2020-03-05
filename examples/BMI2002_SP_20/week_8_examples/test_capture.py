@@ -3,6 +3,8 @@
 :Date: 2020-03-05
 """
 
+# Illustrate Capture output and warnings
+
 from capturer import CaptureOutput
 
 
@@ -13,7 +15,6 @@ with CaptureOutput() as capturer:
     assert capturer.get_bytes() == b'Output from Python\r\n'
     assert capturer.get_lines() == [u'Output from Python']
     assert capturer.get_text() == 'Output from Python'
-
 
 # use in unittest
 import sys
@@ -63,4 +64,3 @@ class TestG(unittest.TestCase):
         with warnings.catch_warnings(record=True) as w:
             g()
             self.assertIn("COVID-19 found", str(w[-1].message))
-            # print(w[-1])

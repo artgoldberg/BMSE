@@ -93,7 +93,8 @@ class TestTransTranslator(unittest.TestCase):
         trans_translator = self.trans_trans_genome(genome)
         self.assertEqual(trans_translator.proteins, [[], ['E']])
 
-    @unittest.skip("demonstrate missing coverage")
+    # not covered, because we're not running this test
+    # @unittest.skip("demonstrate missing coverage")
     def test_genome_stats(self):
         genome = [
             'ATTATTATT',
