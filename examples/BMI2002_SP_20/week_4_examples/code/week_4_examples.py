@@ -1,5 +1,5 @@
 '''
-Advanced Python: lambda, map & comprehensions; yield & generators; eval & tokenize
+Advanced Python: lambda, map & comprehensions
 '''
 # a lambda expression is an anonymous function with parameters and a single expression
 # a lambda behaves like a function object defined with:
