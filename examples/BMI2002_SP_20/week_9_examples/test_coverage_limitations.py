@@ -93,8 +93,7 @@ class TestBranchCoverageExamples(unittest.TestCase):
 
     def test_f2(self):
         self.assertIn('eat', f2(True))
-        # Question for students: if this line doesn't run what branch is being missed, but not reported by coverage?:
-        # self.assertNotIn('eat', f2(False))
+        # Question for students: what assert test can be added to test the branch being missed, but not reported by coverage?
 
     def test_f3(self):
         self.assertIn('Yes', f3('APPLE'))
