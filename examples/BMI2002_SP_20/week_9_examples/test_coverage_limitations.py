@@ -1,4 +1,4 @@
-""" Week 9 examples
+""" Week 9 examples: test coverage limitations
 :Author: Arthur Goldberg <Arthur.Goldberg@mssm.edu>
 :Date: 2020-03-11
 """
