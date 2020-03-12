@@ -19,7 +19,7 @@ else:
 
 # Example 2
 # Abstract methods in Abstract Base Classes (https://docs.python.org/3/library/abc.html) don't get executed
-class ApplicationSimulationObjectInterface(object, metaclass=abc.ABCMeta):  # pragma: no cover
+class ApplicationSimulationObjectInterface(object, metaclass=abc.ABCMeta): # pragma: no cover
 
     @abc.abstractmethod
     def send_initial_events(self, *args): pass
@@ -39,7 +39,7 @@ class Eg(ApplicationSimulationObjectInterface):
 # "# pragma: no cover" can modify a line or a block
 
 # Example 3
-# Question for students: what would be another example of code that couldn't be executed?
+# Question for students: what would be another example of code that couldn't be executed by a test program?
 
 class TestApplicationSimulationObjectInterface(unittest.TestCase):
 
@@ -94,15 +94,23 @@ class TestBranchCoverageExamples(unittest.TestCase):
     def test_f2(self):
         self.assertIn('eat', f2(True))
         # Question for students: what assert test can be added to test the branch being missed, but not reported by coverage?
+        # possible answers
+        self.assertEqual('', f2(False))
+        self.assertNotIn('eat', f2(False))
 
     def test_f3(self):
         self.assertIn('Yes', f3('APPLE'))
         self.assertIn('Yes', f3('apple'))
 
+    def test_f4(self):
+        self.assertIn('Yes', f4('APPLE'))
+        self.assertIn('Yes', f4('apple'))
+        self.assertIn('No', f4('orange'))
+
 # Currently, the only way to address these limitations of coverage is to convert the code into multi-line blocks
 # E. g., rewrite f3 as:
 
-def f3(fruit):
+def f4(fruit):
     if fruit.casefold() == 'apple':
         return 'Yes'
     return 'No'
