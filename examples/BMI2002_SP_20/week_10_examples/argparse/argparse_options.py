@@ -26,7 +26,9 @@ class ArgparseDemo(object):
             description='Demonstrate argparse error checking: required vs. optional args')
         parser.add_argument('an_int', type=int, help='a required integer')
         parser.add_argument('--str', '-s', type=str, help='an optional string')
-        print(parser.parse_args())
+        args = parser.parse_args()
+        print(args.an_int, args.str)
+        print(args)
 
 if __name__ == '__main__':
 

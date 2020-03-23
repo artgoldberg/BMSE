@@ -54,7 +54,10 @@ class ArgparseDemo(object):
 
         # 'type' can be any function taking a string that returns a value on success or raises argparse.ArgumentTypeError otherwise
         parser.add_argument('--identifier', type=ArgparseDemo.identifier, help='a Python identifier')
-        print(parser.parse_args())
+        args = parser.parse_args()
+        print(args)
+        # print('hi mom', file=args.outfile)
+        # print(args.infile2.readlines())
 
 if __name__ == '__main__':
 
