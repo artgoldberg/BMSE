@@ -34,7 +34,6 @@
 # 4. counter / 10,000 equals the probability of getting our observed difference of two means greater than
 #    or equal to 12.97, if there is in fact no significant difference.
 
-
 import random
 
 # Adjustable variables
