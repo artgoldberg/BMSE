@@ -1,0 +1,36 @@
+Pseudocode:
+class
+  define valid extensions
+
+  init(pathname):
+    save pathname
+    validate()
+    ## invariant: validated
+
+  validate():
+    error if pathname not string
+    error if pathname doesn't point to file
+    error if pathname wrong suffix
+    return self
+
+  read():
+    open fasta pathname
+      (what should be done if file cannot be accessed?)
+    # read fasta file
+    new list of sequences
+    while (more lines)
+      ## invariant: preparing to read next sequence
+      error if next line does not start with '>'
+      error if next line does not exist or DOES start with '>'
+      ## invariant: ready to read non-empty sequence
+      initialize next sequence
+      while (next line exists and does not start with '>'):
+        error if line is not nucleotides
+        add line to sequence
+      ## invariant: created non-empty sequence with nucleotides
+      add sequence to list of sequences
+    return list of sequences
+
+Comments:
+   This approach supports chaining, eg:
+      sequences = FC(pn)read()
