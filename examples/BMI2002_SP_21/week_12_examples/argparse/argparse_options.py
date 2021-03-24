@@ -1,5 +1,4 @@
-#!/anaconda3/bin/python3
-""" Demonstrate argparse error checking
+"""Demonstrate argparse: required and optional args
 
 :Author: Arthur Goldberg <Arthur.Goldberg@mssm.edu>
 :Date: 2018-12-06
@@ -8,22 +7,16 @@
 """
 
 import argparse # see https://docs.python.org/3/library/argparse.html
-import re, sys
+
 
 class ArgparseDemo(object):
-    """
-        Kinds of arguments to parse:
-            Required vs. optional arguments
-            Argument type
-            Documentation phrase for each argument
-        Kinds of errors to check:
-            Required vs. optional arguments
+    """Demonstrate argparse: required and optional args.
     """
 
     @staticmethod
     def req_vs_opt_args():
         parser = argparse.ArgumentParser(
-            description='Demonstrate argparse error checking: required vs. optional args')
+            description='Demonstrate argparse: required and optional args')
         parser.add_argument('an_int', type=int, help='a required integer')
         parser.add_argument('--str', '-s', type=str, help='an optional string')
         args = parser.parse_args()
@@ -31,5 +24,4 @@ class ArgparseDemo(object):
         print(args)
 
 if __name__ == '__main__':
-
     ArgparseDemo.req_vs_opt_args()
