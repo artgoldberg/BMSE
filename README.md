@@ -15,6 +15,3 @@ We cover skills that students apply to a current biomedical informatics project,
 
 ## Questions and comments
 Please contact [Prof. Arthur Goldberg](mailto:Arthur-dot-Goldberg@mssm.edu) with any questions or comments.
-
-&#9432;
-&#x24D8;
