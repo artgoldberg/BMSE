@@ -2,7 +2,7 @@
 
 :Author: Arthur Goldberg <Arthur.Goldberg@mssm.edu>
 :Date: 2017-12-09
-:Copyright: 2017-2018, Arthur Goldberg
+:Copyright: 2017-2024, Arthur Goldberg
 :License: MIT
 """
 import unittest
